@@ -13,8 +13,9 @@ jobs:
 
     
     steps:
-      - name: Acesso EC2
+      - name: Deploy no EC2 -AWS
         run: |
-           echo "${{secrets.<nome secret>}}" > webserver && chmod 600 webserver
-           ssh -o StrictHostKeyChecking=no -i "webserver.pem" ubuntu@${{secrets.ssh_ubuntu}} "
-               cd /var/www/html/;git pull "
+          echo "Conectando no EC2"
+          echo "${{secrets.AWS_CHAVE_PIPELINE_AWS_PEM}}" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ubuntu@"${{secrets.ssh_ubuntu}}" "
+          cd /var/www/cd html/;git pull"  
