@@ -6,12 +6,16 @@ on:
     branches: ["main"]
 
 jobs:
+  # Single deploy job since we're just deploying
   deploy:
+    
     runs-on: ubuntu-latest
+
+    
     steps:
-      - name: Deploy no EC2 - AWS
+      - name: Deploy no EC2 -AWS
         run: |
           echo "Conectando no EC2"
           echo "${{secrets.AWS_CHAVE_PIPELINE_AWS_PEM}}" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ubuntu@"${{secrets.ssh_ubuntu}}" "
-          cd /var/www/html/ && git pull"
+          cd /var/www/html/;sudo git merge;sudo git pull/;sudo systemctl restart apache2" 
