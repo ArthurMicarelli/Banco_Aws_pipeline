@@ -17,5 +17,4 @@ jobs:
         run: |
            echo "${{secrets.<nome secret>}}" > webserver && chmod 600 webserver
            ssh -o StrictHostKeyChecking=no -i "webserver.pem" ubuntu@${{secrets.ssh_ubuntu}} "
-               cd /var/www/html &&
-               git pull "
+               cd /var/www/html/;git pull "
